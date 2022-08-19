@@ -1,7 +1,5 @@
-import config from '../config.js'
+import ProductosDaoFactory from './../daos/ProductosDaoFactory.js';
 
-import ContenedorSQL from '../contenedores/ContenedorSQL.js'
-
-const productosApi = new ContenedorSQL(config.sqlite3,'productos');
+const productosApi = ProductosDaoFactory.getDao();
 
 export default productosApi

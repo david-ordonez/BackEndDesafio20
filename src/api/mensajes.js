@@ -1,7 +1,5 @@
-import config from '../config.js'
+import MensajesDaoFactory from './../daos/MensajesFactory.js';
 
-import ContenedorArchivo from '../contenedores/ContenedorArchivo.js'
-
-const mensajesApi = new ContenedorArchivo(`${config.fileSystem.path}/mensajes.json`)
+const mensajesApi = MensajesDaoFactory.getDao();
 
 export default mensajesApi
