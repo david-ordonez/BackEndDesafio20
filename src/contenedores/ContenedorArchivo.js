@@ -1,9 +1,18 @@
 import fm from "../util/filemanager.js";
 
+let instance = null;
+
 class ContenedorArchivo {
   constructor(ruta, dto) {
     this.ruta = ruta;
     this.dto = dto;
+  }
+
+  static getInstance(ruta, dto){
+        if(!instance) {
+            instance = new ContenedorArchivo(ruta, dto);
+        }
+        return instance;
   }
 
   async listar(id) {

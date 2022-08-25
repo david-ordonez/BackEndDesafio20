@@ -8,8 +8,15 @@ class ContenedorSQL {
         this.dto = dto;
     }
 
+    static getInstance(config, tabla, dto) {
+        if (!instance) {
+            instance = new ContenedorSQL(config, tabla, dto);
+        }
+        return instance;
+    }
+
     async listar(id) {
-        const arreglo = await this.knex.from(this.tabla).select('*').where('id',id);  
+        const arreglo = await this.knex.from(this.tabla).select('*').where('id', id);
         return this.dto(arreglo);
     }
 
@@ -22,18 +29,18 @@ class ContenedorSQL {
     }
 
     async actualizar(elem) {
-       return await this.knex.from(this.tabla).where(elem.id).update(elem);
+        return await this.knex.from(this.tabla).where(elem.id).update(elem);
     }
 
     async borrar(id) {
-        return await this.knex.from(this.tabla).where('id',id).del();
+        return await this.knex.from(this.tabla).where('id', id).del();
     }
 
     async borrarAll() {
         return await this.knex.from(this.tabla).del();
     }
 
-    async desconectar() {    
+    async desconectar() {
         await this.knex.destroy();
     }
 }

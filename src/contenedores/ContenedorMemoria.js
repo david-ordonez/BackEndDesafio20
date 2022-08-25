@@ -5,6 +5,13 @@ class ContenedorMemoria {
         this.dto = dto;
     }
 
+    static getInstance(dto) {
+        if (!instance) {
+            instance = new ContenedorMemoria(dto);
+        }
+        return instance;
+    }
+
     listar(id) {
         const elem = this.elementos.find(elem => elem.id == id)
         return this.dto(elem) || { error: `elemento no encontrado` }
