@@ -2,13 +2,15 @@ import knex from 'knex'
 
 class ContenedorSQL {
 
-    constructor(config, tabla) {
+    constructor(config, tabla, dto) {
         this.knex = knex(config)
         this.tabla = tabla
+        this.dto = dto;
     }
 
     async listar(id) {
-        return await this.knex.from(this.tabla).select('*').where('id',id);  
+        const arreglo = await this.knex.from(this.tabla).select('*').where('id',id);  
+        return this.dto(arreglo);
     }
 
     async listarAll() {

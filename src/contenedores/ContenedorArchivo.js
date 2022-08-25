@@ -1,15 +1,16 @@
 import fm from "../util/filemanager.js";
 
 class ContenedorArchivo {
-  constructor(ruta) {
+  constructor(ruta, dto) {
     this.ruta = ruta;
+    this.dto = dto;
   }
 
   async listar(id) {
       try {
           const elementos = await this.listarAll();
           const elem = elementos.find(elem => elem.id == id)
-          return elem || { error: `elemento no encontrado` }
+          return this.dto(elem) || { error: `elemento no encontrado` }
       } catch (error) {
           throw error;
       }
@@ -18,7 +19,7 @@ class ContenedorArchivo {
   async listarAll() {
     try {
       const elementos = await fm.readFile(this.ruta);
-      return elementos;
+      return this.dto(elementos);
     } catch (error) {
       throw error;
     }
