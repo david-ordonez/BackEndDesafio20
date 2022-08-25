@@ -2,7 +2,7 @@ import ContenedorSQL from './../contenedores/ContenedorSQL.js';
 import ContenedorArchivo from './../contenedores/ContenedorArchivo.js';
 import ContenedorMemoria from './../contenedores/ContenedorMemoria.js';
 import config from '../config.js';
-import { asDto } from '../dtos/MensajesDTO.js';
+import { asDto } from '../dtos/MensajeDTO.js';
 
 const opcion = process.argv[2] || 'Mem';
 const rutaArchivoMensajes = `${config.fileSystem.path}/mensajes.json`;
